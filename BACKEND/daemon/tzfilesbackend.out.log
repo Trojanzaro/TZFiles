@@ -5570,3 +5570,586 @@ Deletting FILE: F:\TZFiles\jdk-8u221-windows-x64.exe
   isDir: false
 }
 [0mGET /folder [32m200[0m 2107.794 ms - 2265[0m
+{
+  filename: '018.png',
+  size: 1161203,
+  lastDate: 2018-06-06T21:17:53.605Z,
+  isDir: false
+}
+{
+  filename: '13268394_1501698713189728_8936857104505683715_o.jpg',
+  size: 92028,
+  lastDate: 2020-03-14T14:08:37.513Z,
+  isDir: false
+}
+{
+  filename: '27164226_218710608674198_7087070905440720167_o.jpg',
+  size: 88342,
+  lastDate: 2018-01-26T23:53:20.024Z,
+  isDir: false
+}
+{
+  filename: '29468401_2033620310259440_1042014599936737280_n.jpg',
+  size: 135433,
+  lastDate: 2018-03-27T14:05:25.284Z,
+  isDir: false
+}
+{
+  filename: '30581516_1037356936428466_3371916117567078400_n.jpg',
+  size: 38435,
+  lastDate: 2018-04-17T23:07:40.748Z,
+  isDir: false
+}
+{
+  filename: '308035.jpg',
+  size: 463279,
+  lastDate: 2018-05-17T14:47:00.224Z,
+  isDir: false
+}
+{
+  filename: '39050.jpg',
+  size: 1159505,
+  lastDate: 2018-03-09T00:10:06.624Z,
+  isDir: false
+}
+{
+  filename: '70309455_446838969507514_5774296909124468736_n.png',
+  size: 479172,
+  lastDate: 2020-04-20T19:12:05.967Z,
+  isDir: false
+}
+{
+  filename: '852216.jpg',
+  size: 442064,
+  lastDate: 2018-03-09T00:19:35.497Z,
+  isDir: false
+}
+{
+  filename: 'ad_197450348.jpg',
+  size: 968088,
+  lastDate: 2020-01-31T20:22:00.350Z,
+  isDir: false
+}
+{
+  filename: 'dragon_fall_fire_flame_war_battle_61650_1920x1080.jpg',
+  size: 772539,
+  lastDate: 2018-01-25T17:27:32.244Z,
+  isDir: false
+}
+{
+  filename: 'Freljord_Rakelstake.png',
+  size: 4345455,
+  lastDate: 2018-01-24T00:31:25.518Z,
+  isDir: false
+}
+{
+  filename: 'ghUk7lm.jpg',
+  size: 4797620,
+  lastDate: 2018-05-31T15:10:47.041Z,
+  isDir: false
+}
+{
+  filename: 'git_gud_scrub___dark_souls_3_by_eddy_shinjuku-dayvbu1.jpg',
+  size: 1760360,
+  lastDate: 2018-06-25T22:59:41.001Z,
+  isDir: false
+}
+{
+  filename: 'jdk-8u221-windows-x64.exe',
+  size: 225811416,
+  lastDate: 2020-04-30T08:45:18.020Z,
+  isDir: false
+}
+{
+  filename: 'kybCF2F.jpg',
+  size: 254641,
+  lastDate: 2018-05-01T13:40:20.641Z,
+  isDir: false
+}
+{
+  filename: 'mff-titania.jpg',
+  size: 204322,
+  lastDate: 2020-04-05T12:40:29.317Z,
+  isDir: false
+}
+{
+  filename: "Mjarld Van'leo.jpg",
+  size: 77274,
+  lastDate: 2020-04-05T00:49:17.101Z,
+  isDir: false
+}
+{
+  filename: 'PDFS',
+  size: 0,
+  lastDate: 2020-04-29T20:46:48.446Z,
+  isDir: true
+}
+{
+  filename: 'ravven-dhu-summer-queen.jpg',
+  size: 1529860,
+  lastDate: 2020-04-05T12:51:19.919Z,
+  isDir: false
+}
+[0mGET /folder [36m304[0m 246.332 ms - -[0m
+Deletting FILE: F:\TZFiles\jdk-8u221-windows-x64.exe
+[0mDELETE /file/jdk-8u221-windows-x64.exe [32m200[0m 3056.997 ms - 37[0m
+{
+  filename: '018.png',
+  size: 1161203,
+  lastDate: 2018-06-06T21:17:53.605Z,
+  isDir: false
+}
+{
+  filename: '13268394_1501698713189728_8936857104505683715_o.jpg',
+  size: 92028,
+  lastDate: 2020-03-14T14:08:37.513Z,
+  isDir: false
+}
+{
+  filename: '27164226_218710608674198_7087070905440720167_o.jpg',
+  size: 88342,
+  lastDate: 2018-01-26T23:53:20.024Z,
+  isDir: false
+}
+{
+  filename: '29468401_2033620310259440_1042014599936737280_n.jpg',
+  size: 135433,
+  lastDate: 2018-03-27T14:05:25.284Z,
+  isDir: false
+}
+{
+  filename: '30581516_1037356936428466_3371916117567078400_n.jpg',
+  size: 38435,
+  lastDate: 2018-04-17T23:07:40.748Z,
+  isDir: false
+}
+{
+  filename: '308035.jpg',
+  size: 463279,
+  lastDate: 2018-05-17T14:47:00.224Z,
+  isDir: false
+}
+{
+  filename: '39050.jpg',
+  size: 1159505,
+  lastDate: 2018-03-09T00:10:06.624Z,
+  isDir: false
+}
+{
+  filename: '70309455_446838969507514_5774296909124468736_n.png',
+  size: 479172,
+  lastDate: 2020-04-20T19:12:05.967Z,
+  isDir: false
+}
+{
+  filename: '852216.jpg',
+  size: 442064,
+  lastDate: 2018-03-09T00:19:35.497Z,
+  isDir: false
+}
+{
+  filename: 'ad_197450348.jpg',
+  size: 968088,
+  lastDate: 2020-01-31T20:22:00.350Z,
+  isDir: false
+}
+{
+  filename: 'dragon_fall_fire_flame_war_battle_61650_1920x1080.jpg',
+  size: 772539,
+  lastDate: 2018-01-25T17:27:32.244Z,
+  isDir: false
+}
+{
+  filename: 'Freljord_Rakelstake.png',
+  size: 4345455,
+  lastDate: 2018-01-24T00:31:25.518Z,
+  isDir: false
+}
+{
+  filename: 'ghUk7lm.jpg',
+  size: 4797620,
+  lastDate: 2018-05-31T15:10:47.041Z,
+  isDir: false
+}
+{
+  filename: 'git_gud_scrub___dark_souls_3_by_eddy_shinjuku-dayvbu1.jpg',
+  size: 1760360,
+  lastDate: 2018-06-25T22:59:41.001Z,
+  isDir: false
+}
+{
+  filename: 'kybCF2F.jpg',
+  size: 254641,
+  lastDate: 2018-05-01T13:40:20.641Z,
+  isDir: false
+}
+{
+  filename: 'mff-titania.jpg',
+  size: 204322,
+  lastDate: 2020-04-05T12:40:29.317Z,
+  isDir: false
+}
+{
+  filename: "Mjarld Van'leo.jpg",
+  size: 77274,
+  lastDate: 2020-04-05T00:49:17.101Z,
+  isDir: false
+}
+{
+  filename: 'PDFS',
+  size: 0,
+  lastDate: 2020-04-29T20:46:48.446Z,
+  isDir: true
+}
+{
+  filename: 'ravven-dhu-summer-queen.jpg',
+  size: 1529860,
+  lastDate: 2020-04-05T12:51:19.919Z,
+  isDir: false
+}
+[0mGET /folder [32m200[0m 247.994 ms - 2155[0m
+{
+  filename: '018.png',
+  size: 1161203,
+  lastDate: 2018-06-06T21:17:53.605Z,
+  isDir: false
+}
+{
+  filename: '13268394_1501698713189728_8936857104505683715_o.jpg',
+  size: 92028,
+  lastDate: 2020-03-14T14:08:37.513Z,
+  isDir: false
+}
+{
+  filename: '27164226_218710608674198_7087070905440720167_o.jpg',
+  size: 88342,
+  lastDate: 2018-01-26T23:53:20.024Z,
+  isDir: false
+}
+{
+  filename: '29468401_2033620310259440_1042014599936737280_n.jpg',
+  size: 135433,
+  lastDate: 2018-03-27T14:05:25.284Z,
+  isDir: false
+}
+{
+  filename: '30581516_1037356936428466_3371916117567078400_n.jpg',
+  size: 38435,
+  lastDate: 2018-04-17T23:07:40.748Z,
+  isDir: false
+}
+{
+  filename: '308035.jpg',
+  size: 463279,
+  lastDate: 2018-05-17T14:47:00.224Z,
+  isDir: false
+}
+{
+  filename: '39050.jpg',
+  size: 1159505,
+  lastDate: 2018-03-09T00:10:06.624Z,
+  isDir: false
+}
+{
+  filename: '70309455_446838969507514_5774296909124468736_n.png',
+  size: 479172,
+  lastDate: 2020-04-20T19:12:05.967Z,
+  isDir: false
+}
+{
+  filename: '852216.jpg',
+  size: 442064,
+  lastDate: 2018-03-09T00:19:35.497Z,
+  isDir: false
+}
+{
+  filename: 'ad_197450348.jpg',
+  size: 968088,
+  lastDate: 2020-01-31T20:22:00.350Z,
+  isDir: false
+}
+{
+  filename: 'dragon_fall_fire_flame_war_battle_61650_1920x1080.jpg',
+  size: 772539,
+  lastDate: 2018-01-25T17:27:32.244Z,
+  isDir: false
+}
+{
+  filename: 'Freljord_Rakelstake.png',
+  size: 4345455,
+  lastDate: 2018-01-24T00:31:25.518Z,
+  isDir: false
+}
+{
+  filename: 'ghUk7lm.jpg',
+  size: 4797620,
+  lastDate: 2018-05-31T15:10:47.041Z,
+  isDir: false
+}
+{
+  filename: 'git_gud_scrub___dark_souls_3_by_eddy_shinjuku-dayvbu1.jpg',
+  size: 1760360,
+  lastDate: 2018-06-25T22:59:41.001Z,
+  isDir: false
+}
+{
+  filename: 'kybCF2F.jpg',
+  size: 254641,
+  lastDate: 2018-05-01T13:40:20.641Z,
+  isDir: false
+}
+{
+  filename: 'mff-titania.jpg',
+  size: 204322,
+  lastDate: 2020-04-05T12:40:29.317Z,
+  isDir: false
+}
+{
+  filename: "Mjarld Van'leo.jpg",
+  size: 77274,
+  lastDate: 2020-04-05T00:49:17.101Z,
+  isDir: false
+}
+{
+  filename: 'PDFS',
+  size: 0,
+  lastDate: 2020-04-29T20:46:48.446Z,
+  isDir: true
+}
+{
+  filename: 'ravven-dhu-summer-queen.jpg',
+  size: 1529860,
+  lastDate: 2020-04-05T12:51:19.919Z,
+  isDir: false
+}
+[0mGET /folder [36m304[0m 215.310 ms - -[0m
+{
+  filename: '018.png',
+  size: 1161203,
+  lastDate: 2018-06-06T21:17:53.605Z,
+  isDir: false
+}
+{
+  filename: '13268394_1501698713189728_8936857104505683715_o.jpg',
+  size: 92028,
+  lastDate: 2020-03-14T14:08:37.513Z,
+  isDir: false
+}
+{
+  filename: '27164226_218710608674198_7087070905440720167_o.jpg',
+  size: 88342,
+  lastDate: 2018-01-26T23:53:20.024Z,
+  isDir: false
+}
+{
+  filename: '29468401_2033620310259440_1042014599936737280_n.jpg',
+  size: 135433,
+  lastDate: 2018-03-27T14:05:25.284Z,
+  isDir: false
+}
+{
+  filename: '30581516_1037356936428466_3371916117567078400_n.jpg',
+  size: 38435,
+  lastDate: 2018-04-17T23:07:40.748Z,
+  isDir: false
+}
+{
+  filename: '308035.jpg',
+  size: 463279,
+  lastDate: 2018-05-17T14:47:00.224Z,
+  isDir: false
+}
+{
+  filename: '39050.jpg',
+  size: 1159505,
+  lastDate: 2018-03-09T00:10:06.624Z,
+  isDir: false
+}
+{
+  filename: '70309455_446838969507514_5774296909124468736_n.png',
+  size: 479172,
+  lastDate: 2020-04-20T19:12:05.967Z,
+  isDir: false
+}
+{
+  filename: '852216.jpg',
+  size: 442064,
+  lastDate: 2018-03-09T00:19:35.497Z,
+  isDir: false
+}
+{
+  filename: 'ad_197450348.jpg',
+  size: 968088,
+  lastDate: 2020-01-31T20:22:00.350Z,
+  isDir: false
+}
+{
+  filename: 'dragon_fall_fire_flame_war_battle_61650_1920x1080.jpg',
+  size: 772539,
+  lastDate: 2018-01-25T17:27:32.244Z,
+  isDir: false
+}
+{
+  filename: 'Freljord_Rakelstake.png',
+  size: 4345455,
+  lastDate: 2018-01-24T00:31:25.518Z,
+  isDir: false
+}
+{
+  filename: 'ghUk7lm.jpg',
+  size: 4797620,
+  lastDate: 2018-05-31T15:10:47.041Z,
+  isDir: false
+}
+{
+  filename: 'git_gud_scrub___dark_souls_3_by_eddy_shinjuku-dayvbu1.jpg',
+  size: 1760360,
+  lastDate: 2018-06-25T22:59:41.001Z,
+  isDir: false
+}
+{
+  filename: 'kybCF2F.jpg',
+  size: 254641,
+  lastDate: 2018-05-01T13:40:20.641Z,
+  isDir: false
+}
+{
+  filename: 'mff-titania.jpg',
+  size: 204322,
+  lastDate: 2020-04-05T12:40:29.317Z,
+  isDir: false
+}
+{
+  filename: "Mjarld Van'leo.jpg",
+  size: 77274,
+  lastDate: 2020-04-05T00:49:17.101Z,
+  isDir: false
+}
+{
+  filename: 'PDFS',
+  size: 0,
+  lastDate: 2020-04-29T20:46:48.446Z,
+  isDir: true
+}
+{
+  filename: 'ravven-dhu-summer-queen.jpg',
+  size: 1529860,
+  lastDate: 2020-04-05T12:51:19.919Z,
+  isDir: false
+}
+[0mGET /folder [36m304[0m 215.914 ms - -[0m
+{
+  filename: '018.png',
+  size: 1161203,
+  lastDate: 2018-06-06T21:17:53.605Z,
+  isDir: false
+}
+{
+  filename: '13268394_1501698713189728_8936857104505683715_o.jpg',
+  size: 92028,
+  lastDate: 2020-03-14T14:08:37.513Z,
+  isDir: false
+}
+{
+  filename: '27164226_218710608674198_7087070905440720167_o.jpg',
+  size: 88342,
+  lastDate: 2018-01-26T23:53:20.024Z,
+  isDir: false
+}
+{
+  filename: '29468401_2033620310259440_1042014599936737280_n.jpg',
+  size: 135433,
+  lastDate: 2018-03-27T14:05:25.284Z,
+  isDir: false
+}
+{
+  filename: '30581516_1037356936428466_3371916117567078400_n.jpg',
+  size: 38435,
+  lastDate: 2018-04-17T23:07:40.748Z,
+  isDir: false
+}
+{
+  filename: '308035.jpg',
+  size: 463279,
+  lastDate: 2018-05-17T14:47:00.224Z,
+  isDir: false
+}
+{
+  filename: '39050.jpg',
+  size: 1159505,
+  lastDate: 2018-03-09T00:10:06.624Z,
+  isDir: false
+}
+{
+  filename: '70309455_446838969507514_5774296909124468736_n.png',
+  size: 479172,
+  lastDate: 2020-04-20T19:12:05.967Z,
+  isDir: false
+}
+{
+  filename: '852216.jpg',
+  size: 442064,
+  lastDate: 2018-03-09T00:19:35.497Z,
+  isDir: false
+}
+{
+  filename: 'ad_197450348.jpg',
+  size: 968088,
+  lastDate: 2020-01-31T20:22:00.350Z,
+  isDir: false
+}
+{
+  filename: 'dragon_fall_fire_flame_war_battle_61650_1920x1080.jpg',
+  size: 772539,
+  lastDate: 2018-01-25T17:27:32.244Z,
+  isDir: false
+}
+{
+  filename: 'Freljord_Rakelstake.png',
+  size: 4345455,
+  lastDate: 2018-01-24T00:31:25.518Z,
+  isDir: false
+}
+{
+  filename: 'ghUk7lm.jpg',
+  size: 4797620,
+  lastDate: 2018-05-31T15:10:47.041Z,
+  isDir: false
+}
+{
+  filename: 'git_gud_scrub___dark_souls_3_by_eddy_shinjuku-dayvbu1.jpg',
+  size: 1760360,
+  lastDate: 2018-06-25T22:59:41.001Z,
+  isDir: false
+}
+{
+  filename: 'kybCF2F.jpg',
+  size: 254641,
+  lastDate: 2018-05-01T13:40:20.641Z,
+  isDir: false
+}
+{
+  filename: 'mff-titania.jpg',
+  size: 204322,
+  lastDate: 2020-04-05T12:40:29.317Z,
+  isDir: false
+}
+{
+  filename: "Mjarld Van'leo.jpg",
+  size: 77274,
+  lastDate: 2020-04-05T00:49:17.101Z,
+  isDir: false
+}
+{
+  filename: 'PDFS',
+  size: 0,
+  lastDate: 2020-04-29T20:46:48.446Z,
+  isDir: true
+}
+{
+  filename: 'ravven-dhu-summer-queen.jpg',
+  size: 1529860,
+  lastDate: 2020-04-05T12:51:19.919Z,
+  isDir: false
+}
+[0mGET /folder [36m304[0m 242.339 ms - -[0m

@@ -22,7 +22,29 @@ In order for the application to work you need to create a folder in the server t
   // enable files upload
   ...
   ```
-  
+Another important note to make is that in the current state the Angular build and the NodeJS server application are both running on the same machine. In order for the project to be accesable from other machines the service on angular that is responsible for making the REST API calls to the NodeJS server it needs to be configured to communicate to the host that runs the NodeJS application.
+
+./src/app/http-service.service.ts:
+```typescript
+...
+@Injectable({
+  providedIn: 'root'
+})
+export class HttpServiceService {
+  private finaldata = [];
+  private apiurl = 'http://localhost:3000'; <-----------To be changed to the endpoint that BACKEND/index.js is exposing
+  constructor(
+    private httpClient: HttpClient,
+    private http: Http) { }
+
+  postNewFolder(subFolder) {
+    return this.httpClient.post(this.apiurl, { folder: subFolder } );
+  }
+
+  getData() {
+...
+```
+
 NPM install is needed for both the BACKEND folder and the main folder containing the Angular FrontEnd application before beeing served
 
 ## Development server

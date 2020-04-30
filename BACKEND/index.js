@@ -14,6 +14,7 @@ var https = require('https');
 http.globalAgent.maxSockets = Infinity;
 https.globalAgent.maxSockets = Infinity;
 
+var ORIGINAL_ROOT_DIR = "F:\\TZFiles";
 var ROOT_DIR = "F:\\TZFiles";
 
 // const directoryPath = path.join(ROOT_DIR);
@@ -56,6 +57,7 @@ app.get('/folder', function(req, res) {
     } 
     checkDiskSpace(ROOT_DIR).then((diskSpace) => {
         responseBody.disk = diskSpace;
+        responseBody.disk.isOriginalRoot = (ORIGINAL_ROOT_DIR === ROOT_DIR) ? true : false;
     }).then(() => {
         res.send(responseBody);
         res.end();

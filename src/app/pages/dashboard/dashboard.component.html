@@ -90,7 +90,7 @@
               </thead>
               <tbody>
                   <!--ITEM-->
-                  <tr *ngIf="subFolders.length > 0">
+                  <tr *ngIf="!disk.isOriginalRoot">
                     <td>
                       <span class="far fa-folder-open" style="font-size:25px;"></span>
                     </td>
@@ -144,7 +144,7 @@
         <div class="card-body all-icons" *ngIf="clicked1">
           <b>Size: </b><p><input type="range" min="7" max="30" (change)="changeIconSize($event.target.value)" class="range blue">
           <div class=" row">
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6" [style]="getIconSize()"  *ngIf="subFolders.length > 0" >
+            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6" [style]="getIconSize()"  *ngIf="!disk.isOriginalRoot" >
               <!--BACK FOLDERICON ITEM-->
               <div class="card file-icon-box ">
                 <div class="card-header" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">

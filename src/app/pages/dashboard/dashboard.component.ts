@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   public sb = {type: '', orderAsc: true};
   public iconSize = 10;
   public subFolders = [];
-  humanizeSpeed: string;
+  public humanizeSpeed: string;
 
   constructor(
     private folderService: HttpServiceService,

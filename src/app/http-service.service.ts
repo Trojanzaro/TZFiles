@@ -15,7 +15,7 @@ export class HttpServiceService {
     private http: Http) { }
 
   postNewFolder(subFolder) {
-    return this.httpClient.post(this.apiurl, { folder: subFolder } );
+    return this.httpClient.post(this.apiurl + '/folder', { folder: subFolder } );
   }
 
   getData() {

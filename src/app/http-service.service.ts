@@ -14,6 +14,13 @@ export class HttpServiceService {
     private httpClient: HttpClient,
     private http: Http) { }
 
+  deleteFolder(folder) {
+    return this.httpClient.delete(this.apiurl + '/folder/' + folder, );
+  }
+
+  postCreateNewFolder(newfolder) {
+    return this.httpClient.post(this.apiurl + '/mkdir', { folder: newfolder } );
+  }
   postNewFolder(subFolder) {
     return this.httpClient.post(this.apiurl + '/folder', { folder: subFolder } );
   }

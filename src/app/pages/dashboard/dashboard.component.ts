@@ -1,9 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit} from "@angular/core";
 import { HttpServiceService } from '../../http-service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 // import Chart from 'chart.js';
-
 @Component({
   selector: "app-dashboard",
   templateUrl: "dashboard.component.html"
@@ -24,6 +23,7 @@ export class DashboardComponent implements OnInit {
   public iconSize = 10;
   public subFolders = [];
   public humanizeSpeed: string;
+  public newFolderName: string;
 
   constructor(
     private folderService: HttpServiceService,
@@ -71,6 +71,18 @@ export class DashboardComponent implements OnInit {
           this.error = err;
       });
     }
+  }
+
+  newFolder() {
+    this.folderService.postCreateNewFolder(this.newFolderName).subscribe(res => { 
+      this.error = res;
+      this.getFolderData();
+    },
+    err => this.error = err.error);
+  }
+
+  deleteFolder(folder) {
+    
   }
 
   getFolderData() {
@@ -124,17 +136,41 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteFile() {
-    this.folderService.deleteFile(this.fileToDelete).subscribe(
-      (data) => {
-        this.toastr.show('<span class="tim-icons icon-bell-55" [data-notify]="icon"></span> File: ' + this.fileToDelete + ' Has been deleted succesfully', 'File Deleted' , {
-          disableTimeOut: true,
+    if (this.fileToDelete.isDir) {
+      this.folderService.deleteFolder(this.fileToDelete.filename).subscribe(res => {
+        this.toastr.show('<span class="tim-icons icon-bell-55" [data-notify]="icon"></span> Folder Has been delete succesfully', 'Folder Deletion' , {
+          disableTimeOut: false,
           closeButton: true,
           enableHtml: true,
-          toastClass: "alert alert-primary alert-with-icon",
+          toastClass: 'alert alert-success alert-with-icon',
           positionClass: 'toast-' + 'top' + '-' +  'right'
         });
-      },
-      (error) => console.log(error));
+        this.getFolderData();
+      }, err => {
+        this.toastr.show('<span class="tim-icons icon-bell-55" [data-notify]="icon"></span>'
+        + err.error.errorMessage , 'Folder Deletion' , {
+          disableTimeOut: false,
+          closeButton: true,
+          enableHtml: true,
+          toastClass: 'alert alert-danger alert-with-icon',
+          positionClass: 'toast-' + 'top' + '-' +  'right'
+        });
+      });
+    } else {
+      this.folderService.deleteFile(this.fileToDelete.filename).subscribe(
+        (data) => {
+          this.toastr.show('<span class="tim-icons icon-bell-55" [data-notify]="icon"></span> File Has been deleted succesfully', 'File Deleted' , {
+            disableTimeOut: false,
+            closeButton: true,
+            enableHtml: true,
+            toastClass: 'alert alert-success alert-with-icon',
+            positionClass: 'toast-' + 'top' + '-' +  'right'
+          });
+          this.getFolderData();
+        },
+        (error) => console.log(error));
+      this.getFolderData();
+    }
   }
 
   shortBy(type: string) {
@@ -224,5 +260,13 @@ export class DashboardComponent implements OnInit {
     const sizes: string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
     const i: number = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  }
+
+  get onlyTheFolders() {
+    return this.files.filter(v => v.isDir);
+  }
+
+  get onlyTheFiles() {
+    return this.files.filter(v => !v.isDir);
   }
 }

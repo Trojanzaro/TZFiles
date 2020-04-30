@@ -10,7 +10,7 @@
             </div>
             <div class=" col-sm-6 text-right">
               <button class=" btn btn-fill btn-danger" (click)="getFolderData()"><span class="tim-icons icon-refresh-01"></span></button>
-              <button class=" btn btn-fill btn-danger" (click)="open(content)" ngbTooltip="Upload a file"><span class="tim-icons icon-cloud-upload-94"></span></button>
+              <button class=" btn btn-fill btn-danger" (click)="open(fileUploadModal)" ngbTooltip="Upload a file"><span class="tim-icons icon-cloud-upload-94"></span></button>
             </div>
             <div class=" col-sm-6">
               
@@ -54,9 +54,12 @@
         </div>
         <!--LIST-->
         <div class=" card-body" *ngIf="clicked">
+
+          <button class=" btn btn-fill btn-outline-dark" style="padding: 1%" (click)="open(newFolderModel)"> + <i class="far fa-folder-open" style="font-size:20px;"></i></button>
+
           <div class=" table-full-width table-responsive" style="overflow-x:auto; overflow-y:auto;"> <!--style="overflow-y: hidden; overflow-x: hidden;"-->
             <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status" role="status" *ngIf="loading">
-              <span class="sr-only ">Loading...</span>
+              <span class="sr-only" style="z-index: initial;">Loading...</span>
             </div>
             
             <span *ngFor="let i of subFolders">
@@ -99,23 +102,47 @@
                         <a style="font-size:25px;" href="javascript:void(0);" (click)="goBackFolder();" > . . </a>
                       </p>
                     </td>
-                    <td></td><td></td><td></td><td></td>
+                    <td></td><td></td><td></td>
+                    
                   </tr>
 
-                  <tr *ngFor="let i of files">
+                  <tr *ngFor="let i of onlyTheFolders">
                     <td>
-                      <span *ngIf="(i.isDir)" class="far fa-folder-open" style="font-size:25px;"></span>
-                      <span *ngIf="!(i.isDir)" [class]="getFiletypeIcon(i.filename)" style="font-size:25px;"></span>
+                      <span class="far fa-folder-open" style="font-size:25px;"></span>
                     </td>
                     <td>
                       <p class="title">
-                        <a href="javascript:void(0);" (click)="getSubFolder(i.filename);" *ngIf="i.isDir"> {{i.filename}} </a>
-                        <span *ngIf="!(i.isDir)"> {{i.filename}} </span>
+                        <a href="javascript:void(0);" (click)="getSubFolder(i.filename);"> {{i.filename}} </a>
+                      </p>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                      <p class="title">
+                        {{i.lastDate | date:'medium'}}
+                      </p>
+                    </td>
+                    <td  class=" td-actions text-right">
+                    </td>
+                    <td  class=" td-actions text-right">
+                      <button (click)="open(fileDelete, i)" class=" btn btn-link" type="button" placement="left" ngbTooltip="Delete" container="body" >
+                        <i style ="color:grey; font-size: 30px;" class='far fa-trash-alt' ></i> 
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr *ngFor="let i of onlyTheFiles">
+                    <td>
+                      <span [class]="getFiletypeIcon(i.filename)" style="font-size:25px;"></span>
+                    </td>
+                    <td>
+                      <p class="title">
+                        {{i.filename}}
                       </p>
                     </td>
                     <td>
                       <p  class="title">
-                        <span *ngIf="!(i.isDir)">{{humanizeBytes(i.size)}}</span>
+                        {{humanizeBytes(i.size)}}
                       </p>
                     </td>
                     <td>
@@ -124,12 +151,12 @@
                       </p>
                     </td>
                     <td  class=" td-actions text-right">
-                      <a [href]="getFile(i.filename)" *ngIf="!(i.isDir)" class=" btn btn-link" type="button" placement="left" ngbTooltip="Download" container="body" >
+                      <a [href]="getFile(i.filename)" class=" btn btn-link" type="button" placement="left" ngbTooltip="Download" container="body" >
                         <i style ="color:grey; font-size: 30px;" class='fas fa-download'></i>
                       </a>
                     </td>
                     <td  class=" td-actions text-right">
-                      <button (click)="open(fileDelete, i.filename)" *ngIf="!(i.isDir)" class=" btn btn-link" type="button" placement="left" ngbTooltip="Delete" container="body" >
+                      <button (click)="open(fileDelete, i)" class=" btn btn-link" type="button" placement="left" ngbTooltip="Delete" container="body" >
                         <i style ="color:grey; font-size: 30px;" class='far fa-trash-alt' ></i> 
                       </button>
                     </td>
@@ -180,7 +207,7 @@
                     </a>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="left: -15px !important;">
                       <a [href]="getFile(i.filename)" ngbDropdownItem> <i style ="color: black" class='fas fa-download'></i> Download</a>
-                      <a href="javascript:void(0)" (click)="open(fileDelete, i.filename)" ngbDropdownItem> <i style ="color: black" class='far fa-trash-alt' ></i> Delete</a>
+                      <a href="javascript:void(0)" (click)="open(fileDelete, i)" ngbDropdownItem> <i style ="color: black" class='far fa-trash-alt' ></i> Delete</a>
                     </div>
                   </div>
                 </div>
@@ -194,7 +221,7 @@
     </div>
   </div>
 
-  <ng-template #content let-modal>
+  <ng-template #fileUploadModal let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">File Upload</h4>
       <button style="color: white; position: sticky" type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -235,15 +262,36 @@
   <ng-template id="something" #fileDelete let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Delete File</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <button style="color: white; position: sticky" type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-        Are you sure you want to delete this file?
+        Are you sure you want to delete this <span *ngIf="fileToDelete.isDir"> Folder</span><span *ngIf="!fileToDelete.isDir"> File</span>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark text-right" (click)="modal.dismiss('Delete'); deleteFile();">Yes</button>
       <button type="button" class="btn btn-outline-dark text-right" (click)="modal.dismiss('Cancel')">No</button>
+    </div>
+  </ng-template>
+
+  <ng-template id="something" #newFolderModel let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Create new Folder</h4>
+      <button style="color: white; position: sticky" type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div *ngIf="error">
+          {{ error.errorMessage }}
+        </div>
+        Folder Name: <input (keyup)="newFolderName = $event.target.value" type="text">
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark text-right" (click)="newFolder();">Create</button>
+      <button type="button" class="btn btn-outline-dark text-right" (click)="modal.dismiss('Cancel')">Close</button>
     </div>
   </ng-template>

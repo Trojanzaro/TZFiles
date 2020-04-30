@@ -30,6 +30,32 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
 
+app.post('/mkdir', function(req, res) {
+    doIt = true;
+    fs.readdirSync(path.join(ROOT_DIR)).forEach((file, i) => {
+        if(file === req.body.folder) {
+            res.status(400);
+            res.send({errorCode:400, errorMessage: 'Folder Already exists'});
+            doIt = false;
+        }
+    });
+    (doIt) ? fs.mkdirSync(ROOT_DIR + '\\' + req.body.folder) : console.log('Something went wrong');
+    if(doIt) { res.send({status: 'OK!', message: 'Folder Created!'}); res.end();}
+});
+
+app.delete('/folder/:foldername', function(req, res) {
+    try{
+        fs.rmdirSync(ROOT_DIR  + '\\' + decodeURI(req.params.foldername));
+        res.send({status:'OK', message:'Folder Deleted!'});
+        res.end();
+    } catch(ENOTEMPTY) {
+        res.status(400);
+        res.send({errorCode: 400, errorMessage: 'Error on deletion! Folder not empty!'});
+        res.end();
+        console.log(e);
+    }
+});
+
 app.post('/folder', function(req, res) {
     if(req.body.folder === '..') {
         ROOT_DIR = ROOT_DIR.substring(0, ROOT_DIR.lastIndexOf('\\'));
@@ -42,19 +68,17 @@ app.post('/folder', function(req, res) {
 
 app.get('/folder', function(req, res) {
     var responseBody = {files:[], disk:null};
-    var files = fs.readdirSync( path.join(ROOT_DIR));
-    for (var i=0; i<files.length; i++) {
-        var file = ROOT_DIR + '\\' + files[i];
-        var stats = fs.statSync(file);
+    fs.readdirSync(path.join(ROOT_DIR)).forEach((file, i) => {
+        var stats = fs.statSync(ROOT_DIR + '\\' + file);
         let bodyItem = {
-            filename: files[i],
+            filename: file,
             size: stats["size"],
             lastDate: stats["mtime"],
             isDir: stats.isDirectory()
         };
         responseBody.files.push(bodyItem);
-        console.log(bodyItem);
-    } 
+    });
+
     checkDiskSpace(ROOT_DIR).then((diskSpace) => {
         responseBody.disk = diskSpace;
         responseBody.disk.isOriginalRoot = (ORIGINAL_ROOT_DIR === ROOT_DIR) ? true : false;

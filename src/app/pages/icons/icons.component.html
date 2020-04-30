@@ -10,9 +10,6 @@
         </div>
         <!--DISK-->
         <div class=" card-body" >
-            <h3 class=" card-title text-right ">Total: {{getSizeString(disk.size)}}</h3>
-            <h3 class=" card-title text-right ">Used: {{getSizeString(disk.size - disk.free)}}</h3>
-            <h3 class=" card-title text-right ">Free: {{getSizeString(disk.free)}}</h3>
           <div class="progress" style="height: 1.5rem;">
             <div class="progress-bar-animated progress-bar progress-bar-striped bg-info" [style]="getFreeDiskPrec()">
               Free
@@ -20,7 +17,11 @@
             <div class="progress-bar-animated progress-bar progress-bar-striped bg-danger" [style]="getUsedDiskPrec()">
               Used
             </div>
-          </div>
+          </div><br>
+            <h3 class=" card-title text-right ">Total: {{getSizeString(disk.size)}}</h3>
+            <h3 class=" card-title text-right ">Used: {{getSizeString(disk.size - disk.free)}}</h3>
+            <h3 class=" card-title text-right ">Free: {{getSizeString(disk.free)}}</h3>
+          
         </div>
         <!-- <div class=" card-body all-icons">
           <div class=" row">

@@ -1,0 +1,18 @@
+2020-04-30 10:20:23 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Trojanzaro\Documents\GitHubProjects\TZFiles\BACKEND\node_modules\node-windows\lib\wrapper.js --file C:\Users\Trojanzaro\Documents\GitHubProjects\TZFiles\BACKEND\index.js --scriptoptions= --log "TZFiles Backend wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-04-30 10:20:23 - Started 21128
+2020-04-30 11:07:15 - Stopping tzfilesbackend.exe
+2020-04-30 11:07:15 - ProcessKill 21128
+2020-04-30 11:07:15 - Found child process: 14060 Name: conhost.exe
+2020-04-30 11:07:15 - Found child process: 8012 Name: node.exe
+2020-04-30 11:07:15 - Stopping process 14060
+2020-04-30 11:07:15 - Send SIGINT 14060
+2020-04-30 11:07:15 - SIGINT to 14060 failed - Killing as fallback
+2020-04-30 11:07:15 - Stopping process 8012
+2020-04-30 11:07:15 - Send SIGINT 8012
+2020-04-30 11:07:15 - SIGINT to 8012 failed - Killing as fallback
+2020-04-30 11:07:15 - Stopping process 21128
+2020-04-30 11:07:15 - Send SIGINT 21128
+2020-04-30 11:07:15 - SIGINT to 21128 failed - Killing as fallback
+2020-04-30 11:07:15 - Finished tzfilesbackend.exe
+2020-04-30 11:07:17 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Trojanzaro\Documents\GitHubProjects\TZFiles\BACKEND\node_modules\node-windows\lib\wrapper.js --file C:\Users\Trojanzaro\Documents\GitHubProjects\TZFiles\BACKEND\index.js --scriptoptions= --log "TZFiles Backend wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-04-30 11:07:17 - Started 4636

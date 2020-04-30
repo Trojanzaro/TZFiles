@@ -1,0 +1,29 @@
+<div class="logo">
+  <a href="/" class="simple-text logo-mini">
+    <div class="logo-img">
+      <img src="./assets/img/angular2-logo-white.png" />
+    </div>
+  </a>
+  <a href="/" class="simple-text logo-normal">
+    TZFiles
+  </a>
+</div>
+<div class="sidebar-wrapper">
+  <ul class="nav">
+    <li routerLinkActive="active" class="nav-item" >
+      <a [routerLink]="['/dashboard']">
+        <!--<i class="tim-icons  {{ menuItem.icon }}"></i>-->
+        <i class="fa fa-file-pdf-o" style = ""></i>
+        <p>Files</p>
+      </a>
+    </li>
+
+    <li routerLinkActive="active" class="nav-item" >
+      <a [routerLink]="['/disk']">
+        <!--<i class="tim-icons  {{ menuItem.icon }}"></i>-->
+        <i class="fa fa-hdd-o" style = ""></i>
+        <p>Disk</p>
+      </a>
+    </li>
+  </ul>
+</div>

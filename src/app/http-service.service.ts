@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class HttpServiceService {
   private finaldata = [];
-  private apiurl = 'http://192.168.1.103:3000/folder';
+  private apiurl = 'http://localhost:3000';
   constructor(
     private httpClient: HttpClient,
     private http: Http) { }
@@ -19,19 +19,19 @@ export class HttpServiceService {
   }
 
   getData() {
-     return this.httpClient.get(this.apiurl);
+     return this.httpClient.get(this.apiurl + '/folder');
   }
 
   getFile(filename): Observable<any> {
-    return this.http.get('http://192.168.1.103:3000/file/' + filename, { responseType: ResponseContentType.Blob});
+    return this.http.get(this.apiurl + '/file/' + filename, { responseType: ResponseContentType.Blob});
   }
 
   deleteFile(filename): Observable<any> {
-    return this.http.delete('http://192.168.1.103:3000/file/' + filename);
+    return this.http.delete(this.apiurl + '/file/' + filename);
   }
 
   postFile(fileToUpload: File) {
-    const endpoint = 'http://192.168.1.103:3000/file';
+    const endpoint = this.apiurl + '/file';
     const formData: FormData = new FormData();
     formData.append('avatar', fileToUpload, fileToUpload.name);
     return this.httpClient

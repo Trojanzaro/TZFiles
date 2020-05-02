@@ -1,19 +1,21 @@
-import { Component, OnInit} from "@angular/core";
+import { Component, OnInit} from '@angular/core';
 import { HttpServiceService } from '../../http-service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-// import Chart from 'chart.js';
+import { UserService } from 'src/app/user.service';
+import { Router } from '@angular/router';
+
 @Component({
-  selector: "app-dashboard",
-  templateUrl: "dashboard.component.html"
+  selector: 'app-dashboard',
+  templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
   public fileToDelete ;
   public files = [];
   public disk;
   public myChartData;
-  public clicked: boolean = true;
-  public clicked1: boolean = false;
+  public clicked = true;
+  public clicked1 = false;
   public fileToUpload: File = null;
   public fileUpload = { status: '', message: '', filePath: '' };
   public error;
@@ -28,12 +30,18 @@ export class DashboardComponent implements OnInit {
   constructor(
     private folderService: HttpServiceService,
     private modalService: NgbModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UserService,
+    private router: Router
     ) {}
 
   ngOnInit() {
-    this.getFolderData();
-    this.changeIconSize(30);
+    if (!this.userService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+    } else {
+      this.getFolderData();
+      this.changeIconSize(30);
+    }
   }
 
   handleFileInput(files: FileList) {
@@ -74,15 +82,11 @@ export class DashboardComponent implements OnInit {
   }
 
   newFolder() {
-    this.folderService.postCreateNewFolder(this.newFolderName).subscribe(res => { 
+    this.folderService.postCreateNewFolder(this.newFolderName).subscribe(res => {
       this.error = res;
       this.getFolderData();
     },
     err => this.error = err.error);
-  }
-
-  deleteFolder(folder) {
-    
   }
 
   getFolderData() {

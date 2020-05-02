@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from '@angular/common/http';
-import { Http, ResponseContentType } from '@angular/http';
+import { Http, ResponseContentType, Headers } from '@angular/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -9,32 +9,39 @@ import { Observable } from 'rxjs';
 })
 export class HttpServiceService {
   private finaldata = [];
-  private apiurl = 'http://localhost:3000';
+  private apiurl = 'http://192.168.1.103:3000';
   constructor(
     private httpClient: HttpClient,
     private http: Http) { }
 
+  private getHeaders() {
+    const Auth = (JSON.parse(localStorage.getItem('user')) !== undefined) ? JSON.parse(localStorage.getItem('user')).token : '';
+    return { headers: { authorization: `Bearer ${Auth}`} };
+  }
+
   deleteFolder(folder) {
-    return this.httpClient.delete(this.apiurl + '/folder/' + folder, );
+    return this.httpClient.delete(this.apiurl + '/folder/' + folder, this.getHeaders());
   }
 
   postCreateNewFolder(newfolder) {
-    return this.httpClient.post(this.apiurl + '/mkdir', { folder: newfolder } );
+    return this.httpClient.post(this.apiurl + '/mkdir', { folder: newfolder }, this.getHeaders());
   }
   postNewFolder(subFolder) {
-    return this.httpClient.post(this.apiurl + '/folder', { folder: subFolder } );
+    return this.httpClient.post(this.apiurl + '/folder', { folder: subFolder }, this.getHeaders() );
   }
 
   getData() {
-     return this.httpClient.get(this.apiurl + '/folder');
+     return this.httpClient.get(this.apiurl + '/folder', this.getHeaders());
   }
 
   getFile(filename): Observable<any> {
-    return this.http.get(this.apiurl + '/file/' + filename, { responseType: ResponseContentType.Blob});
+    return this.http.get(this.apiurl + '/file/' + filename, {
+      headers: new Headers({ authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`}),
+      responseType: ResponseContentType.Blob});
   }
 
-  deleteFile(filename): Observable<any> {
-    return this.http.delete(this.apiurl + '/file/' + filename);
+  deleteFile(filename) {
+    return this.httpClient.delete(this.apiurl + '/file/' + filename, this.getHeaders());
   }
 
   postFile(fileToUpload: File) {
@@ -44,7 +51,11 @@ export class HttpServiceService {
     return this.httpClient
       .post<any>(endpoint, formData, {
         reportProgress: true,
-        observe: 'events'}
+        observe: 'events',
+        headers: {
+          authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+        }
+      }
       ).pipe(map((event) => {
         switch (event.type) {
           case HttpEventType.UploadProgress:

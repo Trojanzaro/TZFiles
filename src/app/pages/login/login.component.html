@@ -1,0 +1,35 @@
+<div class=" content" style="align-items: center;">
+  <div class=" row" style="align-items: center;">
+    <div class=" col-md-4" style="align-items: center;">
+      <div class=" card" style="align-items: center;  position:fixed; width: 50%;">
+        <form (ngSubmit)="login()">
+          <div class=" card-header">
+            <h2 class=" title">Login</h2>
+          </div>
+          <div class=" card-body">
+            <div class=" row">
+              <div class=" form-group">
+                <label> Username </label>
+                <input class=" form-control" placeholder="Username" type="text" [(ngModel)]="username"
+                  name="username" />
+              </div>
+            </div>
+            <div class=" row">
+              <div class=" form-group">
+                <label> Password </label>
+                <input class=" form-control" placeholder="Password" type="password" [(ngModel)]="password"
+                  name="password" />
+              </div>
+            </div>
+          </div>
+          <div *ngIf="error != ''">
+            {{error}}
+          </div>
+          <div class=" card-footer">
+            <button class=" btn btn-fill btn-danger">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,8 +8,11 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const _ = require('lodash');
 const checkDiskSpace = require('check-disk-space');
-var http = require('http');
-var https = require('https');
+const http = require('http');
+const https = require('https');
+const compression = require('compression');
+const jwt = require('jsonwebtoken');
+
 
 http.globalAgent.maxSockets = Infinity;
 https.globalAgent.maxSockets = Infinity;
@@ -29,8 +32,30 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
+app.use(compression());
+
+//AUTH!
+app.use(function (req, res, next) {
+    if(req.headers.authorization === undefined) {
+        res.status(401);
+        res.send({errorCode: 401, errorMessage: 'Unauthorized User!'});
+        res.end();
+    } else {
+        let token = req.headers.authorization.split(' ')[1];
+        var decoded = jwt.verify(token, 'E@2f%N$#~?zE)`@_ZzLe)RSLM&SNbhc$,F6a(QA.%pP',  function(err, decoded) {
+            if(err) {
+                res.status(401);
+                res.send({errorCode: 401, errorMessage: 'Unauthorized User!'});
+                res.end();
+            } else {
+                next();
+            }
+        });
+    }
+});
 
 app.post('/mkdir', function(req, res) {
+
     doIt = true;
     fs.readdirSync(path.join(ROOT_DIR)).forEach((file, i) => {
         if(file === req.body.folder) {

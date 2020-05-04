@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpServiceService } from '../../http-service.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-icons",
@@ -14,10 +13,16 @@ export class IconsComponent implements OnInit {
 
   constructor(
     private folderService: HttpServiceService,
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    this.getFolderData();
+    if (!this.userService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+    } else {
+      this.getFolderData();
+    }
   }
 
   getSizeString(byteNumber: number) {
@@ -32,7 +37,7 @@ export class IconsComponent implements OnInit {
   }
 
   getFolderData() {
-    this.folderService.getData().subscribe((data: any) => {
+    this.folderService.getData('\\').subscribe((data: any) => {
       this.disk = data.disk;
     });
   }

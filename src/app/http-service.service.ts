@@ -1,50 +1,71 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from '@angular/common/http';
-import { Http, ResponseContentType } from '@angular/http';
+import { Http, ResponseContentType, Headers } from '@angular/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { fileURLToPath } from 'url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpServiceService {
   private finaldata = [];
-  private apiurl = 'http://localhost:3000';
+  private apiurl = 'http://192.168.1.103:3000';
   constructor(
     private httpClient: HttpClient,
     private http: Http) { }
 
-  deleteFolder(folder) {
-    return this.httpClient.delete(this.apiurl + '/folder/' + folder, );
+  private getHeaders(): any {
+    const Auth = (JSON.parse(localStorage.getItem('user')) !== undefined) ? JSON.parse(localStorage.getItem('user')).token : '';
+    return { headers: { authorization: `Bearer ${Auth}`} };
+  }
+
+  deleteFolder(fld, folder) {
+    const httpopt = this.getHeaders();
+    httpopt.body = {folder: fld};
+    return this.httpClient.delete(this.apiurl + '/folder/' + folder, httpopt);
   }
 
   postCreateNewFolder(newfolder) {
-    return this.httpClient.post(this.apiurl + '/mkdir', { folder: newfolder } );
-  }
-  postNewFolder(subFolder) {
-    return this.httpClient.post(this.apiurl + '/folder', { folder: subFolder } );
+    return this.httpClient.post(this.apiurl + '/mkdir', { folder: newfolder }, this.getHeaders());
   }
 
-  getData() {
-     return this.httpClient.get(this.apiurl + '/folder');
+  getData(fld) {
+     return this.httpClient.post(this.apiurl + '/folder', { folder: fld }, this.getHeaders());
   }
 
-  getFile(filename): Observable<any> {
-    return this.http.get(this.apiurl + '/file/' + filename, { responseType: ResponseContentType.Blob});
+  async getFile(fld, filename) {
+    const file = await this.httpClient.post<Blob>(
+      this.apiurl + '/file/' + filename,
+      { folder: fld },
+      {
+        headers: {
+          authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+        },
+        responseType: 'blob' as 'json'
+      }).toPromise();
+    return file;
   }
 
-  deleteFile(filename): Observable<any> {
-    return this.http.delete(this.apiurl + '/file/' + filename);
+  deleteFile(fld, filename) {
+    const httpopt = this.getHeaders();
+    httpopt.body = {folder: fld};
+    return this.httpClient.delete(this.apiurl + '/file/' + filename, httpopt);
   }
 
-  postFile(fileToUpload: File) {
+  postFile(folder, fileToUpload: File) {
     const endpoint = this.apiurl + '/file';
     const formData: FormData = new FormData();
     formData.append('avatar', fileToUpload, fileToUpload.name);
+    formData.append('folder', folder);
     return this.httpClient
       .post<any>(endpoint, formData, {
         reportProgress: true,
-        observe: 'events'}
+        observe: 'events',
+        headers: {
+          authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+        }
+      }
       ).pipe(map((event) => {
         switch (event.type) {
           case HttpEventType.UploadProgress:
@@ -56,6 +77,6 @@ export class HttpServiceService {
             return `Unhandled event: ${event.type}`;
         }
       })
-      );
+    );
   }
 }

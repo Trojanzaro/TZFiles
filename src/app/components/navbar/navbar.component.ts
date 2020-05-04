@@ -190,6 +190,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
       return  `with: ${reason}`;
     }
   }
+
+  logout() {
+    localStorage.removeItem('user');
+    this.router.navigate(['/login']);
+  }
+
   ngOnDestroy(){
      window.removeEventListener("resize", this.updateColor);
   }

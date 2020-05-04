@@ -93,7 +93,7 @@
               </thead>
               <tbody>
                   <!--ITEM-->
-                  <tr *ngIf="!disk.isOriginalRoot">
+                  <tr *ngIf="folder != '\\'">
                     <td>
                       <span class="far fa-folder-open" style="font-size:25px;"></span>
                     </td>
@@ -102,7 +102,7 @@
                         <a style="font-size:25px;" href="javascript:void(0);" (click)="goBackFolder();" > . . </a>
                       </p>
                     </td>
-                    <td></td><td></td><td></td>
+                    <td></td><td></td><td></td><td></td>
                     
                   </tr>
 
@@ -151,7 +151,7 @@
                       </p>
                     </td>
                     <td  class=" td-actions text-right">
-                      <a [href]="getFile(i.filename)" class=" btn btn-link" type="button" placement="left" ngbTooltip="Download" container="body" >
+                      <a href="javascript:void(0)" (click)="getFile(i.filename)" class=" btn btn-link" type="button" placement="left" ngbTooltip="Download" container="body" >
                         <i style ="color:grey; font-size: 30px;" class='fas fa-download'></i>
                       </a>
                     </td>
@@ -171,7 +171,7 @@
         <div class="card-body all-icons" *ngIf="clicked1">
           <b>Size: </b><p><input type="range" min="7" max="30" (change)="changeIconSize($event.target.value)" class="range blue">
           <div class=" row">
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6" [style]="getIconSize()"  *ngIf="!disk.isOriginalRoot" >
+            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6" [style]="getIconSize()"  *ngIf="folder != '\\'" >
               <!--BACK FOLDERICON ITEM-->
               <div class="card file-icon-box ">
                 <div class="card-header" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">

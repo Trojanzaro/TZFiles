@@ -1,19 +1,20 @@
-import { Component, OnInit} from "@angular/core";
+import { Component, OnInit} from '@angular/core';
 import { HttpServiceService } from '../../http-service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-// import Chart from 'chart.js';
+import { UserService } from 'src/app/user.service';
+import { Router } from '@angular/router';
+
 @Component({
-  selector: "app-dashboard",
-  templateUrl: "dashboard.component.html"
+  selector: 'app-dashboard',
+  templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
   public fileToDelete ;
   public files = [];
   public disk;
-  public myChartData;
-  public clicked: boolean = true;
-  public clicked1: boolean = false;
+  public clicked = true;
+  public clicked1 = false;
   public fileToUpload: File = null;
   public fileUpload = { status: '', message: '', filePath: '' };
   public error;
@@ -24,16 +25,23 @@ export class DashboardComponent implements OnInit {
   public subFolders = [];
   public humanizeSpeed: string;
   public newFolderName: string;
+  public folder = '\\';
 
   constructor(
     private folderService: HttpServiceService,
     private modalService: NgbModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UserService,
+    private router: Router
     ) {}
 
   ngOnInit() {
-    this.getFolderData();
-    this.changeIconSize(30);
+    if (!this.userService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+    } else {
+      this.getFolderData();
+      this.changeIconSize(30);
+    }
   }
 
   handleFileInput(files: FileList) {
@@ -48,7 +56,7 @@ export class DashboardComponent implements OnInit {
       const time: number = new Date().getTime();
       let speed = 0;
       this.uploadButton = true;
-      this.folderService.postFile(this.fileToUpload).subscribe(
+      this.folderService.postFile(this.folder, this.fileToUpload).subscribe(
         res => {
           this.fileUpload = res;
           const diff = new Date().getTime() - time;
@@ -74,20 +82,16 @@ export class DashboardComponent implements OnInit {
   }
 
   newFolder() {
-    this.folderService.postCreateNewFolder(this.newFolderName).subscribe(res => { 
+    this.folderService.postCreateNewFolder(this.folder + '\\' + this.newFolderName).subscribe(res => {
       this.error = res;
       this.getFolderData();
     },
     err => this.error = err.error);
   }
 
-  deleteFolder(folder) {
-    
-  }
-
   getFolderData() {
     this.loading = true;
-    this.folderService.getData().subscribe((data: any) => {
+    this.folderService.getData(this.folder).subscribe((data: any) => {
       this.files = data.files;
       this.disk = data.disk;
       this.loading = false;
@@ -95,19 +99,15 @@ export class DashboardComponent implements OnInit {
   }
 
   getSubFolder(folder) {
-    this.folderService.postNewFolder(folder).subscribe((data) => {
-      console.log(data);
-      this.subFolders.push(folder);
-      this.getFolderData();
-    });
+    this.folder += '\\' + folder;
+    this.subFolders.push(folder);
+    this.getFolderData();
   }
 
   goBackFolder() {
-    this.folderService.postNewFolder('..').subscribe((data) => {
-      console.log(data);
-      this.subFolders.pop();
-      this.getFolderData();
-    });
+    this.folder = this.folder.substring(0, this.folder.lastIndexOf('\\'));
+    this.subFolders.pop();
+    this.getFolderData();
   }
 
   getFreeDiskPrec() {
@@ -131,13 +131,20 @@ export class DashboardComponent implements OnInit {
     return 'width:' + this.fileUpload.message + '%';
   }
 
-  getFile(file) {
-    return 'http://192.168.1.103:3000/file/' + file;
+  async getFile(file) {
+    const blob = await this.folderService.getFile(this.folder, file);
+    const binaryData = [];
+    binaryData.push(blob);
+    const downloadLink = document.createElement('a');
+    downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, {type: blob.type}));
+    downloadLink.setAttribute('download', file);
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
   }
 
   deleteFile() {
     if (this.fileToDelete.isDir) {
-      this.folderService.deleteFolder(this.fileToDelete.filename).subscribe(res => {
+      this.folderService.deleteFolder(this.folder, this.fileToDelete.filename).subscribe(res => {
         this.toastr.show('<span class="tim-icons icon-bell-55" [data-notify]="icon"></span> Folder Has been delete succesfully', 'Folder Deletion' , {
           disableTimeOut: false,
           closeButton: true,
@@ -157,7 +164,7 @@ export class DashboardComponent implements OnInit {
         });
       });
     } else {
-      this.folderService.deleteFile(this.fileToDelete.filename).subscribe(
+      this.folderService.deleteFile(this.folder,this.fileToDelete.filename).subscribe(
         (data) => {
           this.toastr.show('<span class="tim-icons icon-bell-55" [data-notify]="icon"></span> File Has been deleted succesfully', 'File Deleted' , {
             disableTimeOut: false,

@@ -8,7 +8,7 @@
           <span class=" navbar-toggler-bar bar3"> </span>
         </button>
       </div>
-      <a class=" navbar-brand" href="javascript:void(0)"> {{ getTitle() }} </a>
+      <a class=" navbar-brand" href="javascript:void(0)"> TZFiles</a>
     </div>
     <button
       aria-label="Toggle navigation"
@@ -91,18 +91,13 @@
           </a>
           <ul class=" dropdown-navbar" ngbDropdownMenu>
             <li class=" nav-link">
-              <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
+              <a routerLink="/user" class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
                 Profile
-              </a>
-            </li>
-            <li class=" nav-link">
-              <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
-                Settings
               </a>
             </li>
             <li class=" dropdown-divider"></li>
             <li class=" nav-link">
-              <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
+              <a class=" nav-item" href="javascript:void(0)" (click)="logout()" ngbDropdownItem>
                 Log out
               </a>
             </li>

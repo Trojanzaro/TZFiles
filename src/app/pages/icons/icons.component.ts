@@ -37,7 +37,7 @@ export class IconsComponent implements OnInit {
   }
 
   getFolderData() {
-    this.folderService.getData().subscribe((data: any) => {
+    this.folderService.getData('\\').subscribe((data: any) => {
       this.disk = data.disk;
     });
   }

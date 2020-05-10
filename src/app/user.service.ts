@@ -20,16 +20,22 @@ export class UserService {
     if (localStorage.getItem('user') === null) {
       return false;
     } else {
-      const token = JSON.parse(localStorage.getItem('user')).token;
-      const exp = JSON.parse(atob(token.split('.')[1])).exp;
-      const iat = JSON.parse(atob(token.split('.')[1])).iat;
-      console.log(new Date());
-      console.log(new Date(exp));
-      if ((new Date(iat)) > new Date(exp)) {
+      try {
+        const token = JSON.parse(localStorage.getItem('user')).token;
+        const exp = JSON.parse(atob(token.split('.')[1])).exp;
+        const ct = (new Date().getTime() / 1000);
+        console.log(ct);
+        console.log(exp);
+        console.log('Session Expires in: ' + (ct - exp));
+        if (ct > exp) {
+          localStorage.removeItem('user');
+          return false;
+        } else {
+          return true;
+        }
+      } catch (e) {
         localStorage.removeItem('user');
         return false;
-      } else {
-        return true;
       }
     }
   }

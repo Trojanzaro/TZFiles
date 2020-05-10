@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 })
 export class HttpServiceService {
   private finaldata = [];
-  private apiurl = 'http://192.168.1.103:3000';
+  private apiurl = 'http://localhost:3000';
   constructor(
     private httpClient: HttpClient,
     private http: Http) { }

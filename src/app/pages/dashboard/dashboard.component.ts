@@ -253,6 +253,7 @@ export class DashboardComponent implements OnInit {
   changeIconSize(value) {
     this.iconSize = value;
   }
+
   getIconSize() {
     return 'max-height: ' +
     this.iconSize + '%; max-width: ' +

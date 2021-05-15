@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://192.168.1.103:9090';
+  private apiUrl = 'http://10.147.17.182:9090';
 
   constructor(
     private httpClient: HttpClient

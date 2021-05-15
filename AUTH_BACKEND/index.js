@@ -47,9 +47,7 @@ app.post('/users/login', async function (req, res) {
         const match = await bcrypt.compare(req.body.password, user.password);
         if(match) {
             res.send({
-                token: jwt.sign({ username: user.username}, 'E@2f%N$#~?zE)`@_ZzLe)RSLM&SNbhc$,F6a(QA.%pP', {
-                    expiresIn: "10m"
-                  })
+                token: jwt.sign({ username: user.username}, 'E@2f%N$#~?zE)`@_ZzLe)RSLM&SNbhc$,F6a(QA.%pP')
             });
             res.end();
         } else {
